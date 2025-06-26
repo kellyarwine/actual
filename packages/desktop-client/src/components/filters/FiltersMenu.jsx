@@ -232,7 +232,7 @@ function ConfigureField({
                 : type
             }
             value={value}
-            multi={op === 'oneOf' || op === 'notOneOf'}
+            multi={op === 'oneOf' || op === 'notOneOf' || op === 'hasTags'}
             op={op}
             style={{ marginTop: 10 }}
             onChange={v => {
