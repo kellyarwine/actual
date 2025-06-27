@@ -10,6 +10,7 @@ import { useTranslation, Trans } from 'react-i18next';
 import { SvgArrowsSynchronize } from '@actual-app/components/icons/v2';
 import { styles } from '@actual-app/components/styles';
 import { theme } from '@actual-app/components/theme';
+import { View } from '@actual-app/components/view';
 import {
   format as formatDate,
   isValid as isDateValid,
@@ -111,20 +112,37 @@ const TransactionRow = memo(function TransactionRow({
                 }}
               >
                 {() => (
-                  <>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      width: '100%',
+                      minWidth: 0, // Allow the container to shrink
+                    }}
+                  >
                     {transaction.schedule && (
                       <SvgArrowsSynchronize
                         style={{
                           width: 13,
                           height: 13,
                           margin: '0 5px',
+                          flexShrink: 0, // Prevent icon from shrinking
                         }}
                       />
                     )}
                     {transaction.payee && (
-                      <DisplayId type="payees" id={transaction.payee} />
+                      <View
+                        style={{
+                          minWidth: 0, // Allow the text container to shrink
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        <DisplayId type="payees" id={transaction.payee} />
+                      </View>
                     )}
-                  </>
+                  </View>
                 )}
               </Cell>
             );
