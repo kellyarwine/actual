@@ -238,6 +238,14 @@ function ConfigureField({
             onChange={v => {
               dispatch({ type: 'set-value', value: v });
             }}
+            onEnter={v => {
+              onApply({
+                field,
+                op,
+                value: v,
+                options: subfieldToOptions(field, subfield),
+              });
+            }}
           />
         )}
 
