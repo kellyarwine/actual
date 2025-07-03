@@ -66,7 +66,13 @@ export function GenericInput({
             ref={ref}
             defaultValue={value || ''}
             placeholder={t('nothing')}
-            onEnter={onChange}
+            onEnter={newValue => {
+              onChange(newValue);
+              const form = ref.current?.closest('form');
+              if (form) {
+                form.requestSubmit();
+              }
+            }}
             onUpdate={onChange}
           />
         );
@@ -192,7 +198,13 @@ export function GenericInput({
               ref={ref}
               defaultValue={value || ''}
               placeholder={getMonthYearFormat(dateFormat).toLowerCase()}
-              onEnter={onChange}
+              onEnter={newValue => {
+                onChange(newValue);
+                const form = ref.current?.closest('form');
+                if (form) {
+                  form.requestSubmit();
+                }
+              }}
               onUpdate={onChange}
             />
           );
@@ -204,7 +216,13 @@ export function GenericInput({
               ref={ref}
               defaultValue={value || ''}
               placeholder="yyyy"
-              onEnter={onChange}
+              onEnter={newValue => {
+                onChange(newValue);
+                const form = ref.current?.closest('form');
+                if (form) {
+                  form.requestSubmit();
+                }
+              }}
               onUpdate={onChange}
             />
           );
@@ -264,7 +282,13 @@ export function GenericInput({
             ref={ref}
             defaultValue={value || ''}
             placeholder={t('nothing')}
-            onEnter={onChange}
+            onEnter={newValue => {
+              onChange(newValue);
+              const form = ref.current?.closest('form');
+              if (form) {
+                form.requestSubmit();
+              }
+            }}
             onUpdate={onChange}
           />
         );
