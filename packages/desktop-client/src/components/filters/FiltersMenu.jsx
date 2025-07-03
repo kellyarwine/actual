@@ -69,6 +69,7 @@ function ConfigureField({
   const { t } = useTranslation();
   const [subfield, setSubfield] = useState(initialSubfield);
   const inputRef = useRef();
+  const formRef = useRef();
   const prevOp = useRef(null);
 
   useEffect(() => {
@@ -207,12 +208,30 @@ function ConfigureField({
       </Stack>
 
       <Form
+        ref={formRef}
         onSubmit={e => {
           e.preventDefault();
+          
+          // Get the current value from the form data to avoid race conditions
+          // This ensures we get the actual current input value when Enter is pressed
+          let currentValue = value;
+          
+          // For non-boolean fields, try to get the actual current value from the input
+          if (type !== 'boolean' && inputRef.current) {
+            // For string/text inputs, get the value directly from the input element
+            if (type === 'string' || (type === 'id' && (op === 'contains' || op === 'matches' || op === 'doesNotContain' || op === 'hasTags'))) {
+              // Find the actual input element within the GenericInput component
+              const inputElement = inputRef.current.querySelector('input');
+              if (inputElement) {
+                currentValue = inputElement.value;
+              }
+            }
+          }
+          
           onApply({
             field,
             op,
-            value,
+            value: currentValue,
             options: subfieldToOptions(field, subfield),
           });
         }}
