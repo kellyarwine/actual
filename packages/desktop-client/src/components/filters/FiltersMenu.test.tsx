@@ -1,8 +1,10 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
-import { GenericInput } from '../util/GenericInput';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
+
+import { GenericInput } from '@desktop-client/components/util/GenericInput';
 import { TestProvider } from '@desktop-client/redux/mock';
 
 // Mock the form dependencies
@@ -35,7 +37,7 @@ describe('GenericInput onEnter behavior', () => {
     return render(
       <TestProvider>
         <GenericInput {...defaultProps} {...props} />
-      </TestProvider>
+      </TestProvider>,
     );
   }
 
@@ -46,19 +48,19 @@ describe('GenericInput onEnter behavior', () => {
   test('onEnter callback is called when Enter is pressed in string input', async () => {
     const onChange = vi.fn();
     const onEnter = vi.fn();
-    
-    renderGenericInput({ 
-      onChange, 
-      onEnter, 
-      type: 'string', 
-      field: 'notes'
+
+    renderGenericInput({
+      onChange,
+      onEnter,
+      type: 'string',
+      field: 'notes',
     });
 
     const input = screen.getByRole('textbox');
-    
+
     // Type some text
     await userEvent.type(input, '#test #example');
-    
+
     // Press Enter
     await userEvent.type(input, '{Enter}');
 
@@ -69,20 +71,20 @@ describe('GenericInput onEnter behavior', () => {
   test('onEnter works for date month input', async () => {
     const onChange = vi.fn();
     const onEnter = vi.fn();
-    
-    renderGenericInput({ 
-      onChange, 
+
+    renderGenericInput({
+      onChange,
       onEnter,
       type: 'date',
       field: 'date',
-      subfield: 'month'
+      subfield: 'month',
     });
 
     const input = screen.getByRole('textbox');
-    
+
     // Type a month value
     await userEvent.type(input, '2023-12');
-    
+
     // Press Enter
     await userEvent.type(input, '{Enter}');
 

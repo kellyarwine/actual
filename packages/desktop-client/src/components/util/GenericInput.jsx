@@ -193,7 +193,7 @@ export function GenericInput({
               ref={ref}
               defaultValue={value || ''}
               placeholder={getMonthYearFormat(dateFormat).toLowerCase()}
-              onEnter={onEnter ? (v, e) => onEnter(v, e) : (v) => onChange(v)}
+              onEnter={onEnter ? (v, e) => onEnter(v, e) : v => onChange(v)}
               onUpdate={onChange}
             />
           );
@@ -205,7 +205,7 @@ export function GenericInput({
               ref={ref}
               defaultValue={value || ''}
               placeholder="yyyy"
-              onEnter={onEnter ? (v, e) => onEnter(v, e) : (v) => onChange(v)}
+              onEnter={onEnter ? (v, e) => onEnter(v, e) : v => onChange(v)}
               onUpdate={onChange}
             />
           );
@@ -265,7 +265,7 @@ export function GenericInput({
             ref={ref}
             defaultValue={value || ''}
             placeholder={t('nothing')}
-            onEnter={onEnter ? (v, e) => onEnter(v, e) : (v) => onChange(v)}
+            onEnter={onEnter ? (v, e) => onEnter(v, e) : v => onChange(v)}
             onUpdate={onChange}
           />
         );
