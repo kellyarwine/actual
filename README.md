@@ -1,83 +1,216 @@
-<p align="center">
-  <img src="/demo.png" alt="Actualbudget" />
-</p>
+# Todo2 📋
 
-## Getting Started
+A modern, feature-rich todo application built with React and Node.js. Todo2 helps you organize your tasks, set priorities, and boost your productivity with an intuitive interface and powerful features.
 
-Actual is a local-first personal finance tool. It is 100% free and open-source, written in NodeJS, it has a synchronization element so that all your changes can move between devices without any heavy lifting.
+## ✨ Features
 
-If you are interested in contributing, or want to know how development works, see our [contributing](https://actualbudget.org/docs/contributing/) document we would love to have you.
+- 📝 **Task Management**: Create, edit, delete, and organize your tasks
+- 🏷️ **Categories & Tags**: Organize tasks with custom categories and tags
+- ⏰ **Due Dates**: Set deadlines and get reminders
+- 📱 **Responsive Design**: Works seamlessly on desktop and mobile devices
+- 🔄 **Real-time Sync**: Synchronize your tasks across all devices
+- 🎨 **Customizable Themes**: Choose from multiple themes or create your own
+- 📊 **Progress Tracking**: Visual indicators for task completion
+- 🔍 **Advanced Search**: Find tasks quickly with powerful search and filtering
+- 📋 **Lists & Projects**: Organize tasks into lists and projects
+- ✅ **Subtasks**: Break down complex tasks into manageable subtasks
 
-Want to say thanks? Click the ⭐ at the top of the page.
+## 🚀 Quick Start
 
-## Key Links
+### Prerequisites
 
-- Actual [discord](https://discord.gg/pRYNYr4W5A) community.
-- Actual [Community Documentation](https://actualbudget.org/docs)
-- [Frequently asked questions](https://actualbudget.org/docs/faq)
+- Node.js (v20 or higher)
+- Yarn (v4.9.1 or higher)
 
-## Installation
+### Installation
 
-There are four ways to deploy Actual:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/kellyarwine/todo2.git
+   cd todo2
+   ```
 
-1. One-click deployment [via PikaPods](https://www.pikapods.com/pods?run=actual) (~1.40 $/month) - recommended for non-technical users
-1. Managed hosting [via Fly.io](https://actualbudget.org/docs/install/fly) (~1.50 $/month)
-1. Self-hosted by using [a Docker image](https://actualbudget.org/docs/install/docker)
-1. Local-only apps - [downloadable Windows, Mac and Linux apps](https://actualbudget.org/download/) you can run on your device
+2. **Install dependencies**
+   ```bash
+   yarn install
+   ```
 
-Learn more in the [installation instructions docs](https://actualbudget.org/docs/install/).
+3. **Start the development server**
+   ```bash
+   yarn start
+   ```
 
-## Ready to Start Budgeting?
+4. **Open your browser**
+   Navigate to `http://localhost:3000` to start using Todo2!
 
-Read about [Envelope budgeting](https://actualbudget.org/docs/getting-started/envelope-budgeting) to know more about the idea behind Actual Budget.
+## 🏗️ Project Structure
 
-### Are you new to budgeting or want to start fresh?
+```
+todo2/
+├── packages/
+│   ├── desktop-client/     # React frontend application
+│   ├── sync-server/        # Node.js backend server
+│   ├── loot-core/         # Core business logic
+│   ├── desktop-electron/  # Electron desktop app
+│   ├── api/               # REST API layer
+│   └── component-library/ # Shared UI components
+├── data/                  # Database and storage
+├── docs/                  # Documentation
+└── bin/                   # Build scripts
+```
 
-Check out the community's [Starting Fresh](https://actualbudget.org/docs/getting-started/starting-fresh) guide so you can quickly get up and running!
+## 📖 Usage
 
-### Are you migrating from other budgeting apps?
+### Creating Tasks
 
-Check out the community's [Migration](https://actualbudget.org/docs/migration/) guide to start jumping on the Actual Budget train!
+1. Click the "+" button or press `Ctrl+N` (Windows/Linux) or `Cmd+N` (Mac)
+2. Enter your task title and description
+3. Set optional due date, priority, and category
+4. Click "Save" or press `Enter`
 
-## Documentation
+### Organizing Tasks
 
-We have a wide range of documentation on how to use Actual, this is all available in our [Community Documentation](https://actualbudget.org/docs), this includes topics on Budgeting, Account Management, Tips & Tricks and some documentation for developers.
+- **Lists**: Group related tasks into custom lists
+- **Categories**: Use categories to classify tasks by type
+- **Tags**: Add hashtags for flexible organization
+- **Priorities**: Set High, Medium, or Low priority levels
 
-## Contributing
+### Keyboard Shortcuts
 
-Actual is a community driven product. Learn more about [contributing to Actual](https://actualbudget.org/docs/contributing/).
+- `Ctrl/Cmd + N`: New task
+- `Ctrl/Cmd + F`: Search tasks
+- `Ctrl/Cmd + D`: Mark task as done
+- `Delete`: Delete selected task
+- `Ctrl/Cmd + E`: Edit selected task
 
-### Code structure
+## 🔧 Development
 
-The Actual app is split up into a few packages:
+### Available Scripts
 
-- loot-core - The core application that runs on any platform
-- desktop-client - The desktop UI
-- desktop-electron - The desktop app
+- `yarn start`: Start development server
+- `yarn start:desktop`: Start desktop application
+- `yarn start:server`: Start backend server only
+- `yarn build:browser`: Build web application
+- `yarn build:desktop`: Build desktop application
+- `yarn test`: Run all tests
+- `yarn lint`: Run linting
+- `yarn typecheck`: Run TypeScript type checking
 
-More information on the project structure is available in our [community documentation](https://actualbudget.org/docs/contributing/project-details).
+### Testing
 
-### Feature Requests
+Run the test suite:
+```bash
+yarn test --watch=false
+```
 
-Current feature requests can be seen [here](https://github.com/actualbudget/actual/issues?q=is%3Aissue+label%3A%22needs+votes%22+sort%3Areactions-%2B1-desc).
-Vote for your favorite requests by reacting :+1: to the top comment of the request.
+Run tests for specific package:
+```bash
+yarn workspace @todo2/desktop-client run test
+```
 
-To add new feature requests, open a new Issue of the "Feature Request" type.
+### Building for Production
 
-### Translation
+**Web Application:**
+```bash
+yarn build:browser
+```
 
-Make Actual Budget accessible to more people by helping with the [Internationalization](https://actualbudget.org/docs/contributing/i18n/) of Actual. We are using a crowd sourcing tool to manage the translations, see our [Weblate Project](https://hosted.weblate.org/projects/actualbudget/). Weblate proudly supports open-source software projects through their [Libre plan](https://weblate.org/en/hosting/#libre).
+**Desktop Application:**
+```bash
+yarn build:desktop
+```
 
-<a href="https://hosted.weblate.org/engage/actualbudget/">
-<img src="https://hosted.weblate.org/widget/actualbudget/actual/287x66-grey.png" alt="Translation status" />
-</a>
+**Server:**
+```bash
+yarn build:server
+```
 
-## Repo Activity
+## 🐳 Docker Deployment
 
-![Alt](https://repobeats.axiom.co/api/embed/e20537dd8b74956f86736726ccfbc6f0565bec22.svg 'Repobeats analytics image')
+### Using Docker Compose (Recommended)
 
-## Sponsors
+```bash
+docker-compose up -d
+```
 
-Thanks to our wonderful sponsors who make Actual Budget possible!
+### Using Docker
 
-<a href="https://www.netlify.com"> <img src="https://www.netlify.com/v3/img/components/netlify-color-accent.svg" alt="Deploys by Netlify" /> </a>
+```bash
+# Build the image
+docker build -t todo2 .
+
+# Run the container
+docker run -d -p 5006:5006 --name todo2-app todo2
+```
+
+## 🌐 Deployment Options
+
+1. **Self-hosted**: Use Docker or deploy directly to your server
+2. **Cloud platforms**: Deploy to Heroku, Vercel, or Netlify
+3. **Desktop app**: Download the standalone application
+
+## 📱 Mobile Support
+
+Todo2 is fully responsive and works great on mobile devices. For the best mobile experience:
+
+- Add Todo2 to your home screen (PWA support)
+- Use touch gestures for quick actions
+- Enable push notifications for reminders
+
+## 🎨 Customization
+
+### Themes
+
+Todo2 supports multiple themes:
+- Light theme (default)
+- Dark theme
+- High contrast theme
+- Custom themes via CSS variables
+
+### Configuration
+
+Customize your experience in Settings:
+- Default view (list, board, calendar)
+- Date format preferences
+- Notification settings
+- Keyboard shortcuts
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Development Setup
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Make your changes and add tests
+4. Run `yarn lint` and `yarn test`
+5. Commit your changes: `git commit -m 'Add amazing feature'`
+6. Push to the branch: `git push origin feature/amazing-feature`
+7. Open a Pull Request
+
+## 🐛 Bug Reports & Feature Requests
+
+- **Bug Reports**: [Create an issue](https://github.com/kellyarwine/todo2/issues/new?template=bug_report.md)
+- **Feature Requests**: [Create an issue](https://github.com/kellyarwine/todo2/issues/new?template=feature_request.md)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
+
+## 🙏 Acknowledgments
+
+- Built with React, Node.js, and TypeScript
+- UI components from our custom component library
+- Icons from [Heroicons](https://heroicons.com/)
+- Inspired by modern productivity tools
+
+## 📞 Support
+
+- 📧 Email: support@todo2.app
+- 💬 Discord: [Join our community](https://discord.gg/todo2)
+- 📖 Documentation: [docs.todo2.app](https://docs.todo2.app)
+
+---
+
+Made with ❤️ by the Todo2 team
