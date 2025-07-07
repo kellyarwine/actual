@@ -526,8 +526,15 @@ function SingleAutocomplete<T extends Item>({
                         onSelect(value, (e.target as HTMLInputElement).value);
                         return onSelectAfter();
                       } else {
-                        // No highlighted item, still allow the table to save the item
-                        // as `null`, even though we're allowing the table to move
+                        // No highlighted item, check if we should allow form submission
+                        const inputValue = (e.target as HTMLInputElement).value;
+                        if (!onKeyDown && inputValue.trim() !== '') {
+                          // If there's no keydown handler and the user has typed something,
+                          // allow the event to bubble up to the form for submission
+                          // This fixes the issue where Enter key doesn't work in filter forms
+                          return;
+                        }
+                        // Otherwise, prevent default to allow table navigation
                         e.preventDefault();
                         onKeyDown?.(e);
                       }
