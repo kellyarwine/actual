@@ -35,6 +35,7 @@ export function GenericInput({
   style,
   onChange,
   op = undefined,
+  disableEnterKey = false,
 }) {
   const { t } = useTranslation();
   const { grouped: categoryGroups } = useCategories();
@@ -264,7 +265,7 @@ export function GenericInput({
             ref={ref}
             defaultValue={value || ''}
             placeholder={t('nothing')}
-            onEnter={onChange}
+            {...(!disableEnterKey && { onEnter: onChange })}
             onUpdate={onChange}
           />
         );
