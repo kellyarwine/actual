@@ -235,6 +235,7 @@ function ConfigureField({
             multi={op === 'oneOf' || op === 'notOneOf'}
             op={op}
             style={{ marginTop: 10 }}
+            disableEnterKey={true}
             onChange={v => {
               dispatch({ type: 'set-value', value: v });
             }}
