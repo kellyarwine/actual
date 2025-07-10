@@ -52,6 +52,10 @@ export const setI18NextLanguage = (language: string) => {
   if (!isLanguageAvailable(language)) {
     if (language === 'en') {
       // English is always available since we use natural-language keys.
+      // But we still need to call changeLanguage to update the current language
+      if (language !== i18n.language) {
+        i18n.changeLanguage('en');
+      }
       return;
     }
 
