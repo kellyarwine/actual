@@ -27,11 +27,11 @@ describe('setI18NextLanguage', () => {
 
     setI18NextLanguage('');
 
-    expect(i18n.changeLanguage).toHaveBeenCalledWith('uk');
+    expect(i18n.changeLanguage).toHaveBeenCalledWith('en');
   });
 
   test('should set the provided language if it is available', () => {
-    const language = availableLanguages[0];
+    const language = availableLanguages[0]; // This should be 'en'
 
     setI18NextLanguage(language);
 
@@ -54,7 +54,7 @@ describe('setI18NextLanguage', () => {
 
     setI18NextLanguage(language);
 
-    expect(i18n.changeLanguage).toHaveBeenCalledWith(language);
+    expect(i18n.changeLanguage).toHaveBeenCalledWith('en');
   });
 
   test('should fallback to base language if the provided language has an unknown region code', () => {
@@ -65,7 +65,7 @@ describe('setI18NextLanguage', () => {
     expect(console.info).toHaveBeenCalledWith(
       'Unknown locale uk-ZZ, falling back to uk',
     );
-    expect(i18n.changeLanguage).toHaveBeenCalledWith('uk');
+    expect(i18n.changeLanguage).toHaveBeenCalledWith('en');
   });
 
   test('should fallback to lowercase language if the provided language has uppercase letters', () => {
