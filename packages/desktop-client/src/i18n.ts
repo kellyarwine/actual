@@ -52,29 +52,30 @@ export const setI18NextLanguage = (language: string) => {
   if (!isLanguageAvailable(language)) {
     if (language === 'en') {
       // English is always available since we use natural-language keys.
+      // Continue to set the language below
+    } else {
+
+      if (language.includes('-')) {
+        const fallback = language.split('-')[0];
+        console.info(`Unknown locale ${language}, falling back to ${fallback}`);
+        setI18NextLanguage(fallback);
+        return;
+      }
+
+      const lowercaseLanguage = language.toLowerCase();
+      if (lowercaseLanguage !== language) {
+        console.info(
+          `Unknown locale ${language}, falling back to ${lowercaseLanguage}`,
+        );
+        setI18NextLanguage(lowercaseLanguage);
+        return;
+      }
+
+      // Fall back to English
+      console.info(`Unknown locale ${language}, falling back to en`);
+      setI18NextLanguage('en');
       return;
     }
-
-    if (language.includes('-')) {
-      const fallback = language.split('-')[0];
-      console.info(`Unknown locale ${language}, falling back to ${fallback}`);
-      setI18NextLanguage(fallback);
-      return;
-    }
-
-    const lowercaseLanguage = language.toLowerCase();
-    if (lowercaseLanguage !== language) {
-      console.info(
-        `Unknown locale ${language}, falling back to ${lowercaseLanguage}`,
-      );
-      setI18NextLanguage(lowercaseLanguage);
-      return;
-    }
-
-    // Fall back to English
-    console.info(`Unknown locale ${language}, falling back to en`);
-    setI18NextLanguage('en');
-    return;
   }
 
   if (language === i18n.language) {
