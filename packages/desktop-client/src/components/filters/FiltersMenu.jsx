@@ -238,6 +238,17 @@ function ConfigureField({
             onChange={v => {
               dispatch({ type: 'set-value', value: v });
             }}
+            onApply={v => {
+              // When Enter is pressed, use the current input value directly
+              // to avoid race condition with state updates
+              dispatch({ type: 'set-value', value: v });
+              onApply({
+                field,
+                op,
+                value: v,
+                options: subfieldToOptions(field, subfield),
+              });
+            }}
           />
         )}
 
