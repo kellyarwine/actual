@@ -49,11 +49,16 @@ Actual is a community driven product. Learn more about [contributing to Actual](
 
 ### Code structure
 
-The Actual app is split up into a few packages:
+The Actual app is split up into several packages:
 
-- loot-core - The core application that runs on any platform
-- desktop-client - The desktop UI
-- desktop-electron - The desktop app
+- **loot-core** - The core application logic and data layer that runs on any platform
+- **desktop-client** - The web-based desktop UI and React components
+- **desktop-electron** - The Electron desktop application wrapper
+- **component-library** - Reusable React UI components built on React Aria Components
+- **api** - Public API package for integrating with Actual Budget
+- **crdt** - Core CRDT (Conflict-free Replicated Data Type) logic for synchronization
+- **sync-server** - Server application for data persistence and cross-device sync
+- **eslint-plugin-actual** - Custom ESLint rules for code quality and consistency
 
 More information on the project structure is available in our [community documentation](https://actualbudget.org/docs/contributing/project-details).
 
