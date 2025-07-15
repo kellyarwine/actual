@@ -84,4 +84,4 @@ Thanks to our wonderful sponsors who make Actual Budget possible!
 
 ---
 
-_Updated: 2025-07-15 - Making progress like a banana! 🍌_
+_Updated: 2025-07-15 - Making progress like a banana and apple! 🍌🍎_
