@@ -34,6 +34,7 @@ export const tableBorder = colorPalette.navy600;
 export const tableBorderSelected = colorPalette.purple400;
 export const tableBorderHover = colorPalette.purple300;
 export const tableBorderSeparator = colorPalette.navy400;
+export const resizeHandleBorder = colorPalette.navy400;
 export const tableRowBackgroundHighlight = colorPalette.purple800;
 export const tableRowBackgroundHighlightText = colorPalette.navy150;
 export const tableRowHeaderBackground = colorPalette.navy700;

@@ -30,6 +30,7 @@ export const theme = {
   tableBorderSelected: 'var(--color-tableBorderSelected)',
   tableBorderHover: 'var(--color-tableBorderHover)',
   tableBorderSeparator: 'var(--color-tableBorderSeparator)',
+  resizeHandleBorder: 'var(--color-resizeHandleBorder)',
   tableRowBackgroundHighlight: 'var(--color-tableRowBackgroundHighlight)',
   tableRowBackgroundHighlightText:
     'var(--color-tableRowBackgroundHighlightText)',
