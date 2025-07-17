@@ -199,5 +199,6 @@ export const theme = {
   tooltipText: 'var(--color-tooltipText)',
   tooltipBackground: 'var(--color-tooltipBackground)',
   tooltipBorder: 'var(--color-tooltipBorder)',
+  gridResizeHandleBorder: 'var(--color-gridResizeHandleBorder)',
   calendarCellBackground: 'var(--color-calendarCellBackground)',
 };
