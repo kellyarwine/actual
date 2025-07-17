@@ -217,4 +217,6 @@ export const tooltipText = colorPalette.navy900;
 export const tooltipBackground = colorPalette.white;
 export const tooltipBorder = colorPalette.navy150;
 
+export const gridResizeHandleBorder = 'rgba(0, 0, 0, 0.4)';
+
 export const calendarCellBackground = colorPalette.navy100;
