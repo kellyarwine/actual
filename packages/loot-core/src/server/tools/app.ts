@@ -128,7 +128,7 @@ async function fixSplitTransactions(): Promise<{
   const parentTransactionsWithCategory = await db.all<
     Pick<db.DbViewTransactionInternal, 'id'>
   >(`
-    SELECT id FROM transactions WHERE isParent = 1 AND category IS NOT NULL
+    SELECT id FROM v_transactions_internal WHERE is_parent = 1 AND category IS NOT NULL
   `);
 
   await runMutator(async () => {
