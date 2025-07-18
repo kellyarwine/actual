@@ -7,3 +7,53 @@
 .react-grid-item.react-grid-placeholder {
   background-color: #8719e0;
 }
+
+/* Fix resize handle visibility on dark themes */
+[data-theme='dark'] .react-resizable-handle,
+[data-theme='midnight'] .react-resizable-handle {
+  &::after {
+    content: '';
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    width: 5px;
+    height: 5px;
+    border-right: 2px solid var(--color-pageText);
+    border-bottom: 2px solid var(--color-pageText);
+    opacity: 0.8;
+  }
+}
+
+/* Ensure the resize handle is visible when editing */
+[data-theme='dark'] .react-grid-item.react-resizable:hover .react-resizable-handle,
+[data-theme='midnight'] .react-grid-item.react-resizable:hover .react-resizable-handle {
+  &::after {
+    opacity: 1;
+  }
+}
+
+/* Alternative fallback style for the default resize handle */
+[data-theme='dark'] .react-resizable-handle-se,
+[data-theme='midnight'] .react-resizable-handle-se {
+  background-image: linear-gradient(
+    -45deg,
+    transparent 0px,
+    transparent 2px,
+    var(--color-pageText) 2px,
+    var(--color-pageText) 4px,
+    transparent 4px,
+    transparent 6px,
+    var(--color-pageText) 6px,
+    var(--color-pageText) 8px,
+    transparent 8px
+  );
+  background-size: 8px 8px;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  opacity: 0.8;
+}
+
+[data-theme='dark'] .react-grid-item.react-resizable:hover .react-resizable-handle-se,
+[data-theme='midnight'] .react-grid-item.react-resizable:hover .react-resizable-handle-se {
+  opacity: 1;
+}
