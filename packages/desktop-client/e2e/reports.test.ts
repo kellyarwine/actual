@@ -47,6 +47,28 @@ test.describe.parallel('Reports', () => {
     await expect(page).toMatchThemeScreenshots();
   });
 
+  test('tests dashboard resize handles visibility on dark themes', async () => {
+    // Navigate back to main reports overview (dashboard)
+    await page.goBack();
+    await reportsPage.waitToLoad();
+
+    // Enter edit mode
+    await page.getByRole('button', { name: 'Edit dashboard' }).click();
+    
+    // Wait for the grid layout to be ready
+    await page.waitForTimeout(1000);
+
+    // Check that resize handles are present in the DOM
+    const resizeHandles = page.locator('.react-resizable-handle');
+    await expect(resizeHandles.first()).toBeVisible();
+
+    // Test different themes - the toMatchThemeScreenshots will test all themes
+    await expect(page).toMatchThemeScreenshots();
+
+    // Exit edit mode
+    await page.getByRole('button', { name: 'Finish editing dashboard' }).click();
+  });
+
   test.describe.parallel('custom reports', () => {
     let customReportPage: CustomReportPage;
 
