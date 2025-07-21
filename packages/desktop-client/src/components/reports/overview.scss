@@ -7,3 +7,9 @@
 .react-grid-item.react-grid-placeholder {
   background-color: #8719e0;
 }
+
+/* Override react-grid-layout resize handle colors to use theme-aware colors */
+.react-grid-item > .react-resizable-handle::after {
+  border-right-color: var(--color-resizeHandle) !important;
+  border-bottom-color: var(--color-resizeHandle) !important;
+}
