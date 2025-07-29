@@ -76,6 +76,10 @@ Make Actual Budget accessible to more people by helping with the [Internationali
 
 ![Alt](https://repobeats.axiom.co/api/embed/e20537dd8b74956f86736726ccfbc6f0565bec22.svg 'Repobeats analytics image')
 
+---
+
+_Last updated: July 29, 2025_
+
 ## Sponsors
 
 Thanks to our wonderful sponsors who make Actual Budget possible!
