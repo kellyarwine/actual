@@ -84,4 +84,4 @@ Thanks to our wonderful sponsors who make Actual Budget possible!
 
 ---
 
-*Last updated: July 29, 2025*
+<span style="color: orange">*Last updated: July 29, 2025*</span>
