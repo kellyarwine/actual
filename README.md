@@ -2,7 +2,7 @@
   <img src="/demo.png" alt="Actualbudget" />
 </p>
 
-*Last updated: July 2025*
+*Last updated: July 30, 2025*
 
 ## Getting Started
 
