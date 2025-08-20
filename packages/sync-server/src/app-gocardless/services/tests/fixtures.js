@@ -26,7 +26,7 @@ export const mockTransactions = {
     booked: [
       {
         transactionId: 'string',
-        debtorName: 'string',
+        debtorName: 'lemon',
         debtorAccount: {
           iban: 'string',
         },

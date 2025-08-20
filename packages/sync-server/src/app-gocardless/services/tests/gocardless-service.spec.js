@@ -443,9 +443,9 @@ describe('goCardlessService', () => {
                 "debtorAccount": {
                   "iban": "string",
                 },
-                "debtorName": "string",
+                "debtorName": "lemon",
                 "notes": undefined,
-                "payeeName": "String (stri XXX ring)",
+                "payeeName": "Lemon (stri XXX ring)",
                 "remittanceInformationStructuredArrayString": undefined,
                 "remittanceInformationUnstructuredArrayString": undefined,
                 "transactionAmount": {
