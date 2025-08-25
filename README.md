@@ -82,4 +82,4 @@ Thanks to our wonderful sponsors who make Actual Budget possible!
 
 <a href="https://www.netlify.com"> <img src="https://www.netlify.com/v3/img/components/netlify-color-accent.svg" alt="Deploys by Netlify" /> </a>
 
-blue red
+blue red banana
