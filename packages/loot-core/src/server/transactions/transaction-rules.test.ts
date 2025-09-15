@@ -510,6 +510,60 @@ describe('Transaction rules', () => {
     // todo: isapprox
   });
 
+  test('rules work with date range conditions', async () => {
+    await loadRules();
+    const account = await db.insertAccount({ name: 'bank' });
+    const categoryGroupId = await db.insertCategoryGroup({ name: 'general' });
+    const holidayCategoryId = await db.insertCategory({
+      name: 'holiday',
+      cat_group: categoryGroupId,
+    });
+    const krogerId = await db.insertPayee({ name: 'kroger' });
+
+    // Insert test rule for transactions in December
+    await insertRule({
+      stage: null,
+      conditionsOp: 'and',
+      conditions: [
+        { op: 'gte', field: 'date', value: '2020-12-01' },
+        { op: 'lt', field: 'date', value: '2021-01-01' },
+      ],
+      actions: [{ op: 'set', field: 'category', value: holidayCategoryId }],
+    });
+
+    // Test transactions in November (should not match)
+    let transaction = await runRules({
+      date: '2020-11-28',
+      payee: krogerId,
+      category: null,
+    });
+    expect(transaction.category).toBe(null);
+
+    // Test transaction in December (should match)
+    transaction = await runRules({
+      date: '2020-12-15',
+      payee: krogerId,
+      category: null,
+    });
+    expect(transaction.category).toBe(holidayCategoryId);
+
+    // Test transaction on December 1st (should match - inclusive start)
+    transaction = await runRules({
+      date: '2020-12-01',
+      payee: krogerId,
+      category: null,
+    });
+    expect(transaction.category).toBe(holidayCategoryId);
+
+    // Test transaction on January 1st (should not match - exclusive end)
+    transaction = await runRules({
+      date: '2021-01-01',
+      payee: krogerId,
+      category: null,
+    });
+    expect(transaction.category).toBe(null);
+  });
+
   test('and sub expression builds $and condition', async () => {
     const conds = [{ field: 'category', op: 'is', value: null }];
     const { filters } = conditionsToAQL(conds);
