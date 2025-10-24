@@ -793,14 +793,20 @@ function execSplitActions(actions: Action[], transaction) {
 
   // Distribute to fixed-percent splits.
   const remainingAfterFixedAmounts = getSplitRemainder(newTransactions);
-  splitAmountActions
-    .filter(action => action.options.method === 'fixed-percent')
-    .forEach(action => {
-      const splitTransactionIndex = (action.options?.splitIndex ?? 0) + 1;
-      const percent = action.value / 100;
-      const amount = Math.round(remainingAfterFixedAmounts * percent);
-      newTransactions[splitTransactionIndex].amount = amount;
-    });
+  const fixedPercentActions = splitAmountActions.filter(
+    action => action.options.method === 'fixed-percent',
+  );
+  let lastFixedPercentTransactionIndex = -1;
+  fixedPercentActions.forEach(action => {
+    const splitTransactionIndex = (action.options?.splitIndex ?? 0) + 1;
+    const percent = action.value / 100;
+    const amount = Math.round(remainingAfterFixedAmounts * percent);
+    newTransactions[splitTransactionIndex].amount = amount;
+    lastFixedPercentTransactionIndex = Math.max(
+      lastFixedPercentTransactionIndex,
+      splitTransactionIndex,
+    );
+  });
 
   // Distribute to remainder splits.
   const remainderActions = splitAmountActions.filter(
@@ -823,6 +829,11 @@ function execSplitActions(actions: Action[], transaction) {
 
     // The last remainder split will be adjusted for any leftovers from rounding.
     newTransactions[lastNonFixedTransactionIndex].amount +=
+      getSplitRemainder(newTransactions);
+  } else if (lastFixedPercentTransactionIndex !== -1) {
+    // If there are no remainder splits, adjust the last fixed-percent split
+    // for any leftovers from rounding.
+    newTransactions[lastFixedPercentTransactionIndex].amount +=
       getSplitRemainder(newTransactions);
   }
 
