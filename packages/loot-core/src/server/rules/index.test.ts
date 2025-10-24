@@ -791,6 +791,41 @@ describe('Rule', () => {
       );
     });
 
+    test('fixed-percent should balance transaction when percentages sum to 100%', () => {
+      const rule = new Rule({
+        conditionsOp: 'and',
+        conditions: [{ op: 'is', field: 'imported_payee', value: 'James' }],
+        actions: [
+          {
+            op: 'set-split-amount',
+            field: 'amount',
+            value: 33.33,
+            options: { splitIndex: 1, method: 'fixed-percent' },
+          },
+          {
+            op: 'set-split-amount',
+            field: 'amount',
+            value: 33.33,
+            options: { splitIndex: 2, method: 'fixed-percent' },
+          },
+          {
+            op: 'set-split-amount',
+            field: 'amount',
+            value: 33.34,
+            options: { splitIndex: 3, method: 'fixed-percent' },
+          },
+        ],
+      });
+
+      const result = rule.exec({ imported_payee: 'James', amount: 1000 });
+      const total = result.subtransactions.reduce(
+        (sum, t) => sum + t.amount,
+        0,
+      );
+      expect(total).toBe(1000);
+      expect(result.error).toBeNull();
+    });
+
     test('generate errors when fixed amounts exceed the total', () => {
       expect(
         fixedAmountRule.exec({ imported_payee: 'James', amount: 100 }),
